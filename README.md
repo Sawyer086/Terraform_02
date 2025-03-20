@@ -105,4 +105,15 @@
   
 5. Найдите и закоментируйте все, более не используемые переменные проекта.
 6. Проверьте terraform plan. Изменений быть не должно.
+---
+## Ответ:
 
+## Задание 1:
+
+4 
+```
+Error: Invalid function argument  
+on providers.tf line 15, in provider "yandex":  
+15:   service_account_key_file = file("~/.authorized_key.json")
+```
+Необходимо прописать правильный путь расположения файла key.json с авторизованным ключем в "providers.tf"  
