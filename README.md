@@ -215,4 +215,4 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
    - Работа с небольшими базами данных.
      
 ### Задание 2:
-![1](https://github.com/Sawyer086/Terraform_02/tree/main/2)
+![1](https://github.com/Sawyer086/Terraform_02/blob/main/2/2.1.jpg)
