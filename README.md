@@ -110,8 +110,8 @@
 
 ## Задание 1:
 
-### 4.0
-4.1
+### 4
+
 ```
 Error: Invalid function argument  
 on providers.tf line 15, in provider "yandex":  
@@ -121,7 +121,7 @@ on providers.tf line 15, in provider "yandex":
 
 В моем случае исправляем service_account_key_file = file("~/.authorized_key.json") на service_account_key_file = file("/home/sergey/authorized_key.json")
 
-4.2.  
+  
 ```
 Error: Error getting zone while creating instance: cannot determine zone: please set 'zone' key in this resource or at provider level  
 with yandex_compute_instance.platform,
@@ -132,7 +132,7 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 
 zone = var.default_zone
 
-4.3. 
+ 
 ```
 Error: Error while requesting API to create instance: server-request-id = 977f3a20-8cba-45db-aa73-0b21c9a8d2ea server-trace-id = 6202ad1949a277c1:cd23bee50c70ea28:6202ad1949a277c1:1 client-request-id = 84c11257-acb0-4aa7-81c4-fe3aa3b2f003 client-trace-id = a219bef6-028b-4e0c-b816-73828b045169 rpc error: code = FailedPrecondition desc = Platform "standart-v4" not found  
 with yandex_compute_instance.platform,
@@ -145,7 +145,7 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 
 Исправляем на platform_id = "standard-v3"
 
-4.4.  
+  
 ```
 Error: Error while requesting API to create instance: server-request-id = 97a5b7b5-859a-4494-ba51-d5b9f6166d07 server-trace-id = d26c6754f6cd3021:910909cfe8a764b6:d26c6754f6cd3021:1 client-request-id = 7747d459-8a38-4136-bf03-60336058c6b7 client-trace-id = fe820e36-8c47-4ed2-91dd-c310315f2191 rpc error: code = InvalidArgument desc = the specified core fraction is not available on platform "standard-v3"; allowed core fractions: 20, 50, 100   
 with yandex_compute_instance.platform,  
@@ -157,7 +157,7 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 
 Исправляем на core_fraction = 20
 
-4.5.  
+  
 ```
 
 Error: Error while requesting API to create instance: server-request-id = daf09046-5b9c-474c-a81e-3c1ef7fcb2eb server-trace-id = 404e96bd67081154:97ad46e02cd8f36b:404e96bd67081154:1 client-request-id = 31ac8a87-388e-42ce-b0e4-154bfdb694b7 client-trace-id = 717e8c82-0d88-4e0e-bc16-2992ee4d97e6 rpc error: code = InvalidArgument desc = the specified number of cores is not available on platform "standard-v3"; allowed core number: 2, 4  
@@ -170,5 +170,38 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 
 Исправляем на cores = 2
 
+### 5
 ![1](https://github.com/Sawyer086/Terraform_02/blob/main/1/1.jpg)
 ![2](https://github.com/Sawyer086/Terraform_02/blob/main/1/2.jpg)
+
+### 6 
+Параметры preemptible = true и core_fraction = 5 в Yandex Cloud могут существенно помочь в обучении и экономии ресурсов:
+
+### preemptible = true
+1. Экономичность:
+   - Преemptible (прерываемая) ВМ стоит значительно дешевле обычной;
+   - Идеально для учебных проектов с ограниченным бюджетом.
+2. Особенности использования:
+   - Может быть прервана провайдером в любой момент (обычно через 24 часа);
+   - Подходит для временных сред разработки;
+   - Отлично работает для тестирования кода.
+3. Сценарии применения в обучении:
+   - Разработка и тестирование небольших проектов;
+   - Эксперименты с новыми технологиями;
+   - Обучение работе с облачными сервисами;
+   - Создание временных сред для практических заданий.
+     
+### core_fraction = 5
+1. Базовые характеристики:
+   - Определяет минимальную гарантированную производительность процессора;
+   - Значение от 5 до 100 (где 100 - полная мощность);
+   - 5% - минимальная гарантированная производительность.
+2. Преимущества для обучения:
+   - Существенная экономия при длительной работе;
+   - Достаточно для большинства учебных задач;
+   - Подходит для работы с простыми приложениями.
+3. Сценарии применения:
+   - Разработка на начальных этапах;
+   - Тестирование простых сервисов;
+   - Изучение основ DevOps;
+   - Работа с небольшими базами данных.
