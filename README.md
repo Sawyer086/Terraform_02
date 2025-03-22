@@ -152,14 +152,14 @@ with yandex_compute_instance.platform,
 on main.tf line 15, in resource "yandex_compute_instance" "platform":  
 15: resource "yandex_compute_instance" "platform" {  
 ```
-Ответ:  
+
 Неверное значение фракции ядра для resource "yandex_compute_instance" "platform"  
 
 Исправляем на core_fraction = 20
 
 4.5.  
 ```
-5)
+
 Error: Error while requesting API to create instance: server-request-id = daf09046-5b9c-474c-a81e-3c1ef7fcb2eb server-trace-id = 404e96bd67081154:97ad46e02cd8f36b:404e96bd67081154:1 client-request-id = 31ac8a87-388e-42ce-b0e4-154bfdb694b7 client-trace-id = 717e8c82-0d88-4e0e-bc16-2992ee4d97e6 rpc error: code = InvalidArgument desc = the specified number of cores is not available on platform "standard-v3"; allowed core number: 2, 4  
   with yandex_compute_instance.platform,  
   on main.tf line 15, in resource "yandex_compute_instance" "platform":  
