@@ -216,3 +216,7 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
      
 ### Задание 2:
 ![1](https://github.com/Sawyer086/Terraform_02/blob/main/2/2.1.jpg)
+
+[main.tf](https://github.com/Sawyer086/Terraform_02/blob/main/2/main.tf)
+
+[variables.tf](https://github.com/Sawyer086/Terraform_02/blob/main/2/variables.tf)
