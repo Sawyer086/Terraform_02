@@ -213,3 +213,6 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
    - Тестирование простых сервисов;
    - Изучение основ DevOps;
    - Работа с небольшими базами данных.
+     
+### Задание 2:
+![1](https://github.com/Sawyer086/Terraform_02/tree/main/2)
