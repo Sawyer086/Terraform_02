@@ -163,5 +163,5 @@ Error: Error while requesting API to create instance: server-request-id = daf090
 
 Неверное значение числа ядер для resource "yandex_compute_instance" "platform".
 Исправляем на cores = 2
-![1](
-![2](
+![1](https://github.com/Sawyer086/Terraform_02/blob/main/1/1.jpg)
+![2](https://github.com/Sawyer086/Terraform_02/blob/main/1/2.jpg)
