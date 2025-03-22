@@ -118,6 +118,7 @@ on providers.tf line 15, in provider "yandex":
 15:   service_account_key_file = file("~/.authorized_key.json")
 ```
 Необходимо прописать правильный путь расположения файла key с авторизованным ключом в "providers.tf".
+
 В моем случае исправляем service_account_key_file = file("~/.authorized_key.json") на service_account_key_file = file("/home/sergey/authorized_key.json")
 
 4.2.  
@@ -128,6 +129,7 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 15: resource "yandex_compute_instance" "platform" {  
 ```  
 В "main.tf" необходимо указать 'zone' для resource "yandex_compute_instance" "platform"  
+
 zone = var.default_zone
 
 4.3. 
@@ -138,7 +140,9 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 15: resource "yandex_compute_instance" "platform" {  
 ```
 Неверный идентификатор платформы для resource "yandex_compute_instance" "platform"  
-ссылка на источник: [https://yandex.cloud/en/docs/compute/concepts/vm-platforms](https://yandex.cloud/en/docs/compute/concepts/vm-platforms)  
+
+Источник: [https://yandex.cloud/en/docs/compute/concepts/vm-platforms](https://yandex.cloud/en/docs/compute/concepts/vm-platforms)  
+
 Исправляем на platform_id = "standard-v3"
 
 4.4.  
@@ -150,6 +154,7 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 ```
 Ответ:  
 Неверное значение фракции ядра для resource "yandex_compute_instance" "platform"  
+
 Исправляем на core_fraction = 20
 
 4.5.  
