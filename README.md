@@ -105,10 +105,18 @@
   
 5. Найдите и закоментируйте все, более не используемые переменные проекта.
 6. Проверьте terraform plan. Изменений быть не должно.
+   
 ---
+
 ## Ответ:
 
 ## Задание 1:
+
+### 1-3
+
+![1](https://github.com/Sawyer086/Terraform_02/blob/main/1/4.jpg)
+![2](https://github.com/Sawyer086/Terraform_02/blob/main/1/5.jpg)
+![3](https://github.com/Sawyer086/Terraform_02/blob/main/1/3.jpg)
 
 ### 4
 
