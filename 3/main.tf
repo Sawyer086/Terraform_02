@@ -45,6 +45,7 @@ resource "yandex_compute_instance" "platform" {
 
 }
 
+
 ### 3 zadanie
 
 resource "yandex_vpc_network" "develop2" {
@@ -63,8 +64,7 @@ data "yandex_compute_image" "ubuntu2" {
 }
 
 resource "yandex_compute_instance" "netology-develop" {
-  # name        = var.vm_db_web_name
-  name        = local.vm_db_lname
+  name        = "netology-develop-platform-web2"
   platform_id = "standard-v3"
   zone        = var.vm_db_default_zone
 
@@ -86,10 +86,11 @@ resource "yandex_compute_instance" "netology-develop" {
     subnet_id = yandex_vpc_subnet.develop3.id
     nat       = true
   }
-  /*metadata = {
-    serial-port-enable = 1
-    ssh-keys           = "ubuntu:${var.vm_db_ssh_root_key}"
-  }*/
+
+#  /*metadata = {
+#    serial-port-enable = 1
+#    ssh-keys           = "ubuntu:${var.vm_db_ssh_root_key}"
+#  }*/
 
   metadata = var.vms_ssh_root_key
 
