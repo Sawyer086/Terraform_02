@@ -10,20 +10,17 @@ resource "yandex_vpc_subnet" "develop" {
 
 
 data "yandex_compute_image" "ubuntu" {
-#  family = "ubuntu-2004-lts"
-# 2 zadanie
   family = var.vm_web_family
 }
 resource "yandex_compute_instance" "platform" {
-  name        = "netology-develop-platform-web"
-  platform_id = "standard-v3"
-# 2 zadanie
+  name        = var.vm_web_name
+  platform_id = var.vm_web_platform_id
   zone        = var.default_zone
 
   resources {
-    cores         = 2
-    memory        = 1
-    core_fraction = 20
+    cores         = var.vm_web_cores
+    memory        = var.vm_web_memory
+    core_fraction = var.vm_web_core_fraction
   }
   boot_disk {
     initialize_params {
@@ -45,14 +42,13 @@ resource "yandex_compute_instance" "platform" {
 
 }
 
-### 3 zadanie
 resource "yandex_compute_instance" "platform_db" {
   name        = var.vm_db_name
   zone        = var.vm_db_zone
   platform_id = var.vm_db_platform_id
   resources {
     cores         = var.vm_db_cores
-    memory        = var.vm_db_memory
+memory        = var.vm_db_memory
     core_fraction = var.vm_db_core_fraction
   }
   boot_disk {
@@ -62,7 +58,7 @@ resource "yandex_compute_instance" "platform_db" {
   }
   scheduling_policy {
     preemptible = var.vm_db_preemptible
-  } 
+  }
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
     nat       = var.vm_db_nat
