@@ -37,8 +37,6 @@ variable "vms_ssh_root_key" {
 #  description = "ssh-keygen -t ed25519"
   description = "cat /home/sergey/.ssh/id_ed25519.pub"
 }
-
-
 ### 2 zadanie
 variable "vm_web_family" {
   type        = string
@@ -82,7 +80,6 @@ variable "vm_web_preemptible" {
   default     = true
   description = "yandex compute instance scheduling policy preemptible"
 }
-
 variable "vm_web_nat" {
   type        = bool
   default     = true
