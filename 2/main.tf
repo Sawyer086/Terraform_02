@@ -17,7 +17,6 @@ data "yandex_compute_image" "ubuntu" {
 resource "yandex_compute_instance" "platform" {
   name        = "netology-develop-platform-web"
   platform_id = "standard-v3"
-# 2 zadanie
   zone        = var.default_zone
 
   resources {
