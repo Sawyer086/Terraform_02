@@ -39,16 +39,6 @@ variable "vms_ssh_root_key" {
 }
 
 
-###ssh vars
-
-variable "vms_ssh_root_key" {
-  type        = string
-  default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFixQNdztt2dA4n2WlRR+UMCnV0mTSljuU366FJQHl2I sergey@Ubuntu"
-#  description = "ssh-keygen -t ed25519"
-  description = "cat /home/sergey/.ssh/id_ed25519.pub"
-}
-
-
 ### 2 zadanie
 variable "vm_web_family" {
   type        = string
