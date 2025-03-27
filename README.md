@@ -244,3 +244,10 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 
 ### Задание 6:
 
+## 1
+
+## 2
+
+## 3
+
+## 4
