@@ -220,3 +220,14 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 [main.tf](https://github.com/Sawyer086/Terraform_02/blob/main/2/main.tf)
 
 [variables.tf](https://github.com/Sawyer086/Terraform_02/blob/main/2/variables.tf)
+
+### Задание 3: 
+![1](https://github.com/Sawyer086/Terraform_02/blob/main/3/3.1.jpg)
+
+[main.tf]
+
+[variables.tf]
+
+[vms_platform.tf]
+
+
