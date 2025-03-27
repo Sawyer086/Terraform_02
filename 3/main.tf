@@ -1,4 +1,4 @@
-esource "yandex_vpc_network" "develop" {
+resource "yandex_vpc_network" "develop" {
   name = var.vpc_name
 }
 
