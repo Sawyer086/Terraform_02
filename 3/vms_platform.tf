@@ -47,13 +47,13 @@ variable "vm_db_preemptible" {
 }
 
 variable "vm_db_nat" {
-50   type        = bool
-51   default     = true
-52   description = "yandex compute instance network interface nat"
-53 }
-54
-55 variable "vm_db_serial_port_enable" {
-56   type        = number
-57   default     = 1
-58   description = "yandex compute instance metadata serial-port-enable"
-59 }
+  type        = bool
+  default     = true
+  description = "yandex compute instance network interface nat"
+}
+
+variable "vm_db_serial_port_enable" {
+  type        = number
+  default     = 1
+  description = "yandex compute instance metadata serial-port-enable"
+}
