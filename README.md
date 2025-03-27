@@ -179,8 +179,8 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 Исправляем на cores = 2
 
 ### 5
-![1](https://github.com/Sawyer086/Terraform_02/blob/main/1/1.jpg)
-![2](https://github.com/Sawyer086/Terraform_02/blob/main/1/2.jpg)
+![1]()
+![2]()
 
 ### 6 
 Параметры preemptible = true и core_fraction = 5 в Yandex Cloud могут существенно помочь в обучении и экономии ресурсов:
