@@ -231,6 +231,9 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 [vms_platform.tf](https://github.com/Sawyer086/Terraform_02/blob/main/3/vms_platform.tf)
 
 ### Задание 4:
+![1](https://github.com/Sawyer086/Terraform_02/blob/main/4/6.jpg)
+
+[outputs.tf](https://github.com/Sawyer086/Terraform_02/blob/main/4/outputs.tf)
 
 ### Задание 5:
 
