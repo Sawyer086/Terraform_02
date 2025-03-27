@@ -239,6 +239,6 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 [locals.tf](https://github.com/Sawyer086/Terraform_02/blob/main/5/locals.tf)
 
 [main.tf](https://github.com/Sawyer086/Terraform_02/blob/main/5/main.tf)
-locals.tf()
+
 ### Задание 6:
 
