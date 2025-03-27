@@ -236,6 +236,8 @@ on main.tf line 15, in resource "yandex_compute_instance" "platform":
 [outputs.tf](https://github.com/Sawyer086/Terraform_02/blob/main/4/outputs.tf)
 
 ### Задание 5:
+![1](https://github.com/Sawyer086/Terraform_02/blob/main/5/7.jpg)
+
 [locals.tf](https://github.com/Sawyer086/Terraform_02/blob/main/5/locals.tf)
 
 [main.tf](https://github.com/Sawyer086/Terraform_02/blob/main/5/main.tf)
