@@ -13,19 +13,17 @@ data "yandex_compute_image" "ubuntu" {
   family = var.vm_web_family
 }
 
-# Новая map(object) переменная для ресурсов ВМ
+# Общая map-переменная для ресурсов ВМ
 variable "vms_resources" {
   type = map(object({
     cores         = number
     memory        = number
     core_fraction = number
-    preemptible   = optional(bool)
-    nat           = optional(bool)
   }))
 }
 
-# Общий metadata блок
-variable "metadata_common" {
+# Общая map-переменная для metadata
+variable "vms_metadata" {
   type = map(string)
 }
 
@@ -36,9 +34,9 @@ resource "yandex_compute_instance" "platform" {
   zone        = var.default_zone  # Зона для первой ВМ
 
   resources {
-    cores         = var.vms_resources["platform"].cores
-    memory        = var.vms_resources["platform"].memory
-    core_fraction = var.vms_resources["platform"].core_fraction
+    cores         = var.vms_resources["web"].cores
+    memory        = var.vms_resources["web"].memory
+    core_fraction = var.vms_resources["web"].core_fraction
   }
 
   boot_disk {
@@ -48,15 +46,15 @@ resource "yandex_compute_instance" "platform" {
   }
 
   scheduling_policy {
-    preemptible = var.vms_resources["platform"].preemptible
+    preemptible = true
   }
 
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
-    nat       = var.vms_resources["platform"].nat
+    nat       = true
   }
 
-  metadata = var.metadata_common
+  metadata = var.vms_metadata
 }
 
 # Вторая ВМ, созданная в зоне ru-central1-b
@@ -64,7 +62,7 @@ resource "yandex_vpc_subnet" "develop_b" {
   name           = "${var.vpc_name}-b"
   zone           = "ru-central1-b"
   network_id     = yandex_vpc_network.develop.id
-  v4_cidr_blocks = var.second_cidr  # Добавлен новый диапазон IP
+  v4_cidr_blocks = var.second_cidr  # Добавьте новый диапазон IP
 }
 
 resource "yandex_compute_instance" "platform_db" {
@@ -73,9 +71,9 @@ resource "yandex_compute_instance" "platform_db" {
   platform_id = var.vm_db_platform_id
 
   resources {
-    cores         = var.vms_resources["platform_db"].cores
-    memory        = var.vms_resources["platform_db"].memory
-    core_fraction = var.vms_resources["platform_db"].core_fraction
+    cores         = var.vms_resources["db"].cores
+    memory        = var.vms_resources["db"].memory
+    core_fraction = var.vms_resources["db"].core_fraction
   }
 
   boot_disk {
@@ -85,51 +83,24 @@ resource "yandex_compute_instance" "platform_db" {
   }
 
   scheduling_policy {
-    preemptible = var.vms_resources["platform_db"].preemptible
+    preemptible = var.vm_db_preemptible
   }
 
   network_interface {
     subnet_id = yandex_vpc_subnet.develop_b.id
-    nat       = var.vms_resources["platform_db"].nat
+    nat       = var.vm_db_nat
   }
 
-  metadata = var.metadata_common
+  metadata = var.vms_metadata
 }
 
-# Закомментированные переменные, которые больше не используются
+# Убираем неиспользуемые переменные (закомментированы)
 # variable "vm_web_cores" {}
 # variable "vm_web_memory" {}
 # variable "vm_web_core_fraction" {}
+
 # variable "vm_db_cores" {}
 # variable "vm_db_memory" {}
 # variable "vm_db_core_fraction" {}
-# variable "vm_db_preemptible" {}
-# variable "vm_db_nat" {}
+
 # variable "vm_db_serial_port_enable" {}
-
-# Пример значений для новых переменных
-variable "vms_resources" {
-  default = {
-    platform = {
-      cores         = 2
-      memory        = 4
-      core_fraction = 50
-      preemptible   = true
-      nat           = true
-    }
-    platform_db = {
-      cores         = 4
-      memory        = 8
-      core_fraction = 20
-      preemptible   = false
-      nat           = false
-    }
-  }
-}
-
-variable "metadata_common" {
-  default = {
-    serial-port-enable = "1"
-    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
-  }
-}
