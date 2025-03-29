@@ -13,25 +13,11 @@ data "yandex_compute_image" "ubuntu" {
   family = var.vm_web_family
 }
 
-# Общая map-переменная для ресурсов ВМ
-variable "vms_resources" {
-  type = map(object({
-    cores         = number
-    memory        = number
-    core_fraction = number
-  }))
-}
-
-# Общая map-переменная для metadata
-variable "vms_metadata" {
-  type = map(string)
-}
-
-# Первая ВМ (уже существует)
+# Первая ВМ (web)
 resource "yandex_compute_instance" "platform" {
   name        = local.vm_web_lname 
   platform_id = var.vm_web_platform_id
-  zone        = var.default_zone  # Зона для первой ВМ
+  zone        = var.default_zone
 
   resources {
     cores         = var.vms_resources["web"].cores
@@ -46,28 +32,28 @@ resource "yandex_compute_instance" "platform" {
   }
 
   scheduling_policy {
-    preemptible = true
+    preemptible = var.vms_resources["web"].preemptible
   }
 
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
-    nat       = true
+    nat       = var.vms_resources["web"].nat
   }
 
   metadata = var.vms_metadata
 }
 
-# Вторая ВМ, созданная в зоне ru-central1-b
+# Вторая ВМ (db)
 resource "yandex_vpc_subnet" "develop_b" {
   name           = "${var.vpc_name}-b"
   zone           = "ru-central1-b"
   network_id     = yandex_vpc_network.develop.id
-  v4_cidr_blocks = var.second_cidr  # Добавьте новый диапазон IP
+  v4_cidr_blocks = var.second_cidr
 }
 
 resource "yandex_compute_instance" "platform_db" {
   name        = local.vm_db_lname
-  zone        = "ru-central1-b"  # Прямо указываем зону для второй ВМ
+  zone        = "ru-central1-b"
   platform_id = var.vm_db_platform_id
 
   resources {
@@ -83,24 +69,13 @@ resource "yandex_compute_instance" "platform_db" {
   }
 
   scheduling_policy {
-    preemptible = var.vm_db_preemptible
+    preemptible = var.vms_resources["db"].preemptible
   }
 
   network_interface {
     subnet_id = yandex_vpc_subnet.develop_b.id
-    nat       = var.vm_db_nat
+    nat       = var.vms_resources["db"].nat
   }
 
   metadata = var.vms_metadata
 }
-
-# Убираем неиспользуемые переменные (закомментированы)
-# variable "vm_web_cores" {}
-# variable "vm_web_memory" {}
-# variable "vm_web_core_fraction" {}
-
-# variable "vm_db_cores" {}
-# variable "vm_db_memory" {}
-# variable "vm_db_core_fraction" {}
-
-# variable "vm_db_serial_port_enable" {}
